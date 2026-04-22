@@ -5,6 +5,29 @@ After each project or review, add a new entry here.
 
 ---
 
+## 2026-04-23 · agent-rules · Rogier's Claude Code feedback
+
+**Project:** agent-rules global configuration
+**Review type:** User feedback from Rogier (Claude Code user)
+
+### What was found
+
+1. **Claude Code silently ignores CLAUDE.md in new sessions.** New conversations sometimes start without reading `~/.claude/CLAUDE.md` or project-root `CLAUDE.md`. There is no visible indicator when this happens, so the user doesn't know the rules are inactive until they notice quality degradation.
+
+### Lessons extracted
+
+- Add an explicit acknowledgment line ("CLAUDE.md loaded") at the top of global CLAUDE.md so the user can verify rules are active.
+- Make all instructions imperative ("do X") not descriptive ("X is important"). Claude Code is more reliable with direct commands.
+- This is a platform limitation, not a user error. The workaround is the best we can do until Anthropic fixes it.
+
+### Fixes applied
+
+- Updated `~/.claude/CLAUDE.md` with mandatory acknowledgment line at top
+- Made all rule phrasing directive/imperative
+- Added Claude Code reliability section to QUALITY-GATE.md
+
+---
+
 ## 2026-04-23 · t3code-mobile · Claude Opus review of ChatGPT 5.4 output
 
 **Project:** Android WebView wrapper + HTTPS proxy for T3 Code

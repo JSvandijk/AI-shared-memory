@@ -2,6 +2,7 @@
 
 Automatic context for Claude Code sessions on this project.
 Read `AGENTS.md` in this repo root for the full quality gate.
+Global rules in `~/.claude/CLAUDE.md` apply to every session — verify they loaded.
 
 ## What This Repo Is
 
