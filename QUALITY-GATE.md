@@ -2,7 +2,7 @@
 
 Universal rules for AI-assisted development. These apply to every project regardless of language, framework, or domain.
 
-> **This repo is public.** Keep content generic. No emails, tokens, paths, or personal data.
+> **This repo is public.** Keep content generic. No emails, tokens, absolute local file paths, or personal data.
 
 ## Principles
 
@@ -21,12 +21,6 @@ Universal rules for AI-assisted development. These apply to every project regard
 - Check every cache layer for sensitive data exposure
 - Check every buffer/stream for size limits
 - Don't silently swallow errors: `catch (e) { /* ignore */ }` is almost always wrong
-
-## Claude Code reliability
-
-- `~/.claude/CLAUDE.md` must include: "At the start of every new conversation, say 'CLAUDE.md loaded'"
-- This is the only reliable way for the user to confirm the rules are active in a new session
-- If a session starts without acknowledgment, the rules may not be loaded — remind the user to check
 
 ## After every implementation
 
