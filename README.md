@@ -17,16 +17,24 @@ Project rules override global rules where they add repo-specific context. The gl
 ## How it works
 
 ```
-agent-rules (this repo)          →  permanent, accumulates over time
+agent-rules (this repo)              →  permanent, accumulates over time
         │
-        ├── QUALITY-GATE.md      →  universal rules (any project)
-        ├── LEARNINGS.md         →  findings from each project
-        └── CHATGPT-INSTRUCTIONS.md → copy into ChatGPT Custom Instructions
+        ├── QUALITY-GATE.md          →  universal rules (any project)
+        ├── LEARNINGS.md             →  findings from each project
+        ├── CHATGPT-INSTRUCTIONS.md  →  copy into ChatGPT Custom Instructions
+        │
+        └── templates/
+              ├── AGENTS.md          →  project template for ChatGPT
+              ├── CLAUDE.md          →  project template for Claude Code
+              └── .claude/commands/
+                    └── rules.md     →  /rules slash command (fallback)
         │
         ▼
-~/.claude/CLAUDE.md              →  global Claude context, references this repo
+~/.claude/CLAUDE.md              →  global Claude context (auto-read)
+~/.claude/commands/rules.md      →  global /rules command (recovery)
 {project}/CLAUDE.md              →  project-specific Claude context
 {project}/AGENTS.md              →  project-specific ChatGPT context
+{project}/.claude/commands/      →  project-specific slash commands
 ```
 
 ## Setup (one-time)
@@ -43,7 +51,13 @@ Sync `~/.claude/CLAUDE.md` if the quality gate changed.
 ## New project setup
 
 ```bash
-git add-agents    # copies templates to current repo
+git add-agents    # copies AGENTS.md, CLAUDE.md, and .claude/commands/rules.md
 ```
 
 Then fill in the project-specific sections.
+
+## If Claude Code doesn't load CLAUDE.md
+
+1. You'll know because Claude won't say "CLAUDE.md loaded" at the start.
+2. Type `/rules` — this forces Claude to read and apply the project rules.
+3. This works because `.claude/commands/rules.md` is a slash command, not auto-read — it's triggered explicitly.
