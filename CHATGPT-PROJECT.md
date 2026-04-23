@@ -60,3 +60,4 @@ Feedback repo: https://github.com/JSvandijk/agent-rules
 ## Learned patterns
 
 - Overclaiming in docs creates false confidence
+- Never say "impossible" or "fabricated" about another AI's claim without verifying first. Check before dismissing

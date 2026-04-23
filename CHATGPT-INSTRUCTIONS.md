@@ -37,4 +37,5 @@ Werkwijze — volg dit altijd:
 Geleerde patronen:
 
 - Overclaiming in docs creates false confidence
+- Never say "impossible" or "fabricated" about another AI's claim without verifying first. Check before dismissing
 ```

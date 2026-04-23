@@ -29,7 +29,7 @@ After promoting or retiring, run `bash sync.sh` to regenerate active artifacts.
 | 8 | Post-compaction Claude forgets rules. SessionStart hook helps | tool:claude | promoted | templates/.claude/settings.json |
 | 9 | Overclaiming in docs creates false confidence | global | promoted | README |
 | 10 | @AGENTS.md import in CLAUDE.md auto-loads the quality gate | tool:claude | promoted | templates/CLAUDE.md |
-| 11 | Never say "impossible" or "fabricated" about another AI's claim without verifying first. Check before dismissing | global | candidate | not yet |
+| 11 | Never say "impossible" or "fabricated" about another AI's claim without verifying first. Check before dismissing | global | promoted | ~/.claude/CLAUDE.md, CHATGPT-PROJECT.md |
 
 ---
 
