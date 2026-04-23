@@ -37,11 +37,24 @@ agent-rules (this repo)              →  permanent, accumulates over time
 {project}/.claude/commands/      →  project-specific slash commands
 ```
 
-## Setup (one-time)
+## Quick start (Claude Code)
 
-1. Clone this repo somewhere accessible
-2. Copy `CHATGPT-INSTRUCTIONS.md` content into ChatGPT > Settings > Custom Instructions
-3. `~/.claude/CLAUDE.md` already references this repo
+```bash
+git clone https://github.com/JSvandijk/agent-rules.git
+cd agent-rules
+bash setup.sh
+```
+
+This creates three things:
+- `~/.claude/CLAUDE.md` — rules that Claude reads at session start
+- `~/.claude/commands/rules.md` — `/rules` fallback if Claude forgets
+- Hook in `~/.claude/settings.json` — re-injects rules after context compaction
+
+Test: open Claude Code → Claude says "CLAUDE.md loaded" → done.
+
+## Setup for ChatGPT
+
+Copy `CHATGPT-INSTRUCTIONS.md` content into ChatGPT > Settings > Custom Instructions.
 
 ## After each project
 
