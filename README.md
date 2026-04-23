@@ -2,6 +2,8 @@
 
 Persistent quality rules and accumulated learnings for AI-assisted development.
 
+> **This repo is public.** Do not commit email addresses, passwords, tokens, API keys, file paths, or other private information. Learnings and rules only.
+
 ## What this is
 
 This repo is the single source of truth for how AI agents (Claude, ChatGPT) should work on my projects. It solves one problem: **AI doesn't remember between sessions, so the lessons need to live somewhere permanent.**

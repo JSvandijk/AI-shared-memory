@@ -3,6 +3,8 @@
 Accumulated findings from each project. Newest first.
 After each project or review, add a new entry here.
 
+> **This repo is public.** Keep entries factual and generic. No emails, tokens, file paths, or personal data.
+
 ---
 
 ## 2026-04-23 · agent-rules · Rogier's Claude Code feedback

@@ -2,6 +2,8 @@
 
 Universal rules for AI-assisted development. These apply to every project regardless of language, framework, or domain.
 
+> **This repo is public.** Keep content generic. No emails, tokens, paths, or personal data.
+
 ## Principles
 
 1. **Verify before claiming done.** Never say "fixed" or "done" without confirming. If you can't verify, say "not verified."
