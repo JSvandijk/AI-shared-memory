@@ -1,96 +1,37 @@
 # Learnings
 
-Accumulated findings from each project. Newest first.
-After each project or review, add a new entry here.
+Reusable patterns from AI-assisted projects. This is a promotion queue, not an archive.
 
-> **This repo is public.** Keep entries factual and generic. No emails, tokens, absolute local file paths, or personal data.
+> **This repo is public.** No emails, tokens, absolute local file paths, or personal data.
 
----
+## Promotion rule
 
-## 2026-04-23 · agent-rules · Claude Code reliability feedback
-
-**Project:** agent-rules global configuration
-**Review type:** User feedback from a Claude Code user
-
-### What was found
-
-1. **Claude Code silently ignores CLAUDE.md in new sessions.** New conversations sometimes start without reading `~/.claude/CLAUDE.md` or project-root `CLAUDE.md`. There is no visible indicator when this happens, so the user doesn't know the rules are inactive until they notice quality degradation.
-
-### Lessons extracted
-
-- Add an explicit acknowledgment line ("CLAUDE.md loaded") at the top of global CLAUDE.md so the user can verify rules are active.
-- Make all instructions imperative ("do X") not descriptive ("X is important"). Claude Code is more reliable with direct commands.
-- This is a platform limitation, not a user error. The workaround is the best we can do until Anthropic fixes it.
-
-### Fixes applied
-
-- Updated `~/.claude/CLAUDE.md` with mandatory acknowledgment line at top
-- Made all rule phrasing directive/imperative (ALWAYS/NEVER)
-- Added `/rules` slash command as manual fallback (`~/.claude/commands/rules.md`)
-- Added post-compaction SessionStart hook to re-remind Claude of rules
-- Kept QUALITY-GATE.md tool-agnostic; Claude-specific workarounds live in templates
+- **1x seen** → stays in the project repo only
+- **2x seen** → add here as a short pattern
+- **Keeps recurring** → promote to QUALITY-GATE.md, templates, or global CLAUDE.md
 
 ---
 
-## 2026-04-23 · t3code-mobile · Claude Opus review of ChatGPT 5.4 output
+## Patterns
 
-**Project:** Android WebView wrapper + HTTPS proxy for T3 Code
-**Review type:** Full public-readiness review by Claude Opus on ChatGPT 5.4-generated code
-
-### What was found
-
-1. **Self-audit missed self-introduced bugs.** ChatGPT wrote a security audit that named info-disclosure and XSS as risks, then shipped code with both: filesystem paths in health endpoint, unescaped HTML templates, no CSP headers.
-
-2. **Documentation substituted for testing.** 18+ markdown files, zero unit tests, zero Android tests. The project looked thorough on the surface but had no executable verification beyond a smoke test.
-
-3. **Deprecated APIs used on current target SDK.** `FLAG_FULLSCREEN` (deprecated API 30) and `onBackPressed()` (deprecated API 33) used with `targetSdkVersion 35`. Immediately visible to any Android reviewer.
-
-4. **Service worker cached everything.** Including navigation responses that could contain sensitive session data. No allowlist, no cache scoping.
-
-5. **Error handlers silently swallowed failures.** `catch (e) { /* ignore */ }` on decompression — corrupted data passed through silently.
-
-6. **Uncommitted work across multiple sessions.** 2+ sessions of security fixes existed only as local modifications. One `git checkout .` would have destroyed all of it.
-
-7. **Evidence drift.** Evidence referenced an older commit while the code had moved forward with security-critical changes.
-
-8. **README had duplicate sections.** "Proof And Assets" and "Community And Support" shared 10+ identical links. Classic AI over-generation pattern.
-
-### Lessons extracted
-
-- AI code + AI audit in the same pass don't catch each other's mistakes. External review is essential.
-- Volume of documentation is not correlated with quality. Ratio of tests to docs matters.
-- "Works locally" ≠ "done" — especially for security changes.
-- Small code smells (duplicate cache entries, warning suppression) erode reviewer trust disproportionately.
-- AI agents reliably add but rarely subtract. Explicitly check for things to remove.
-
-### Fixes applied
-
-- Extracted `escapeHtml` + `injectBeforeHeadClose` to testable module with 18 unit tests
-- Added CSP headers, response limits, decompression error handling, health endpoint caching
-- Replaced deprecated Android APIs with modern equivalents
-- Restricted service worker to static asset allowlist
-- Removed info-disclosure from health endpoint and startup logs
-- Cleaned up README duplicate sections
+| # | Pattern | First seen | Promoted? |
+|---|---------|-----------|-----------|
+| 1 | AI code + AI audit in the same pass don't catch each other's mistakes. External review needed. | t3code-mobile | → QUALITY-GATE principle 2 |
+| 2 | Volume of docs ≠ quality. Ratio of tests to docs matters. | t3code-mobile | → QUALITY-GATE principle 4 |
+| 3 | AI adds but rarely subtracts. Explicitly check for things to remove. | t3code-mobile | → QUALITY-GATE "after every implementation" |
+| 4 | "Works locally" ≠ done. Uncommitted work is not progress. | t3code-mobile | → QUALITY-GATE principle 5 |
+| 5 | Deprecated API + warning suppression = tech debt, not a fix. | t3code-mobile | → QUALITY-GATE principle 6 |
+| 6 | Evidence from an older commit is historical, not current proof. | t3code-mobile | → QUALITY-GATE principle 7 |
+| 7 | CLAUDE.md is loaded as a suggestion, not enforced. Use ALWAYS/NEVER, keep under 200 lines. | agent-rules | → templates/CLAUDE.md |
+| 8 | Post-compaction, Claude forgets rules. SessionStart hook helps. | agent-rules | → templates/.claude/settings.json |
+| 9 | Overclaiming in docs creates false confidence. Say what is actually true. | agent-rules | → fixed in README |
 
 ---
 
-## Template for new entries
+## Template
 
-```markdown
-## YYYY-MM-DD · project-name · context
-
-**Project:** one-line description
-**Review type:** what kind of review
-
-### What was found
-1. finding
-2. finding
-
-### Lessons extracted
-- lesson
-- lesson
-
-### Fixes applied
-- fix
-- fix
+```
+| # | Pattern | First seen | Promoted? |
+|---|---------|-----------|-----------|
+| N | one-line failure mode or lesson | project-name | → where it was promoted, or "not yet" |
 ```
