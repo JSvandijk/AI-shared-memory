@@ -7,7 +7,7 @@ NEVER skip this.
 
 `agent-rules` is the canonical source for AI working rules shared between Claude and ChatGPT.
 Pipeline: Capture (project repos) → Promote (this repo) → Hydrate (active context for each AI).
-GitHub: https://github.com/JSvandijk/agent-rules
+GitHub: https://github.com/JSvandijk/AI-shared-memory
 
 ## Key Files
 

@@ -18,7 +18,7 @@ Als iets niet geverifieerd is, zeg dat — verzin geen zekerheid.
 Ik werk met Claude Opus als second opinion. Wees minstens zo streng op jezelf
 als een externe reviewer zou zijn.
 
-Feedback repo: https://github.com/JSvandijk/agent-rules
+Feedback repo: https://github.com/JSvandijk/AI-shared-memory
 ```
 
 ## "How would you like ChatGPT to respond?"

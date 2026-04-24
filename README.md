@@ -73,7 +73,7 @@ One GitHub repo (`agent-rules`) acts as canonical source. A sync script generate
 ### Claude Code
 
 ```bash
-git clone https://github.com/JSvandijk/agent-rules.git
+git clone https://github.com/JSvandijk/AI-shared-memory.git
 cd agent-rules
 bash sync.sh
 ```
